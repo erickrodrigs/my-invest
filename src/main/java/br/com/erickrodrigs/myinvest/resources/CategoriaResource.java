@@ -12,34 +12,34 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.erickrodrigs.myinvest.domain.Investimento;
-import br.com.erickrodrigs.myinvest.repository.InvestimentoRepository;
+import br.com.erickrodrigs.myinvest.domain.Categoria;
+import br.com.erickrodrigs.myinvest.repository.CategoriaRepository;
 
 @RestController
-@RequestMapping("/investimentos")
+@RequestMapping("/categorias")
 @CrossOrigin(origins="http://localhost:3000")
-public class InvestimentoResource {
+public class CategoriaResource {
 	
 	@Autowired
-	private InvestimentoRepository investimentoRepository;
+	private CategoriaRepository categoriaRepository;
 	
 	@GetMapping
-	public List<Investimento> listarTodos() {
-		return investimentoRepository.findAll();
+	public List<Categoria> listarTodas() {
+		return categoriaRepository.findAll();
 	}
 	
 	@GetMapping("/{codigo}")
-	public Investimento buscarPeloCodigo(@PathVariable Long codigo) {
-		return investimentoRepository.findById(codigo).orElse(null);
+	public Categoria buscarPeloCodigo(@PathVariable Long codigo) {
+		return categoriaRepository.findById(codigo).orElse(null);
 	}
 	
 	@DeleteMapping("/{codigo}")
 	public void remover(@PathVariable Long codigo) {
-		investimentoRepository.deleteById(codigo);
+		categoriaRepository.deleteById(codigo);
 	}
 	
 	@PostMapping
-	public Investimento cadastrar(@RequestBody Investimento investimento) {
-		return investimentoRepository.save(investimento);
+	public Categoria cadastrar(@RequestBody Categoria categoria) {
+		return categoriaRepository.save(categoria);
 	}
 }
